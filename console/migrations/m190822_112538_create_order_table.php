@@ -9,7 +9,7 @@ use yii\db\Migration;
 class m190822_112538_create_order_table extends Migration
 {
     use MigrationTrait;
-    
+
     /**
      * {@inheritdoc}
      */
@@ -17,22 +17,22 @@ class m190822_112538_create_order_table extends Migration
     {
         $this->createTable('{{%order}}', [
             'id' => $this->primaryKey(),
-            'place_id' => $this->integer()->notNull(),
+            'seat_id' => $this->integer()->notNull(),
             'movie_id' => $this->integer()->notNull(),
             'status' => $this->integer()->notNull(),
         ], $this->getTableOptions());
 
-        // creates index and fk for column `place_id`
+        // creates index and fk for column `seat_id`
         $this->createIndex(
-            'idx-order-place_id',
+            'idx-order-seat_id',
             '{{%order}}',
-            'place_id'
+            'seat_id'
         );
         $this->addForeignKey(
-            'fk-order-place_id',
+            'fk-order-seat_id',
             '{{%order}}',
-            'place_id',
-            '{{%film}}',
+            'seat_id',
+            '{{%seat}}',
             'id',
             'CASCADE'
         );
@@ -68,13 +68,13 @@ class m190822_112538_create_order_table extends Migration
             '{{%order}}'
         );
 
-        // drops foreign key and index for column `place_id`
+        // drops foreign key and index for column `seat_id`
         $this->dropForeignKey(
-            'fk-order-place_id',
+            'fk-order-seat_id',
             '{{%order}}'
         );
         $this->dropIndex(
-            'idx-order-place_id',
+            'idx-order-seat_id',
             '{{%order}}'
         );
 
