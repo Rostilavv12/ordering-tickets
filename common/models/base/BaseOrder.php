@@ -18,6 +18,9 @@ use yii\db\ActiveRecord;
  */
 class BaseOrder extends ActiveRecord
 {
+    const STATUS_RESERVE = 0;
+    const STATUS_BUY = 1;
+
     /**
      * {@inheritdoc}
      */
