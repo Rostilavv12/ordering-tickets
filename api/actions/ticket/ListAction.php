@@ -11,11 +11,12 @@ use yii\rest\Action;
 class ListAction extends Action
 {
     /**
-     * @param $movie_id
+     * @param $movieId
+     *
      * @return mixed
      */
-    public function run()
+    public function run($movieId)
     {
-        return $this->modelClass::getOccupiedPlaces($movie_id);
+        return ($this->modelClass)::getOccupiedPlaces($movieId);
     }
 }

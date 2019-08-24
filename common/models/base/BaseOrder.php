@@ -37,8 +37,13 @@ class BaseOrder extends ActiveRecord
         return [
             [['seat_id', 'movie_id', 'status'], 'required'],
             [['seat_id', 'movie_id', 'status'], 'integer'],
-            [['movie_id'], 'exist', 'skipOnError' => true, 'targetClass' => BaseMovie::class, 'targetAttribute' => ['movie_id' => 'id']],
-            [['seat_id'], 'exist', 'skipOnError' => true, 'targetClass' => BaseSeat::class, 'targetAttribute' => ['seat_id' => 'id']],
+            [['seat_id', 'movie_id'], 'unique', 'skipOnError' => true,
+                'targetAttribute' => ['seat_id', 'movie_id'],
+                'message' => Yii::t('app', 'This ticket is already taken')],
+            [['movie_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => BaseMovie::class, 'targetAttribute' => ['movie_id' => 'id']],
+            [['seat_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => BaseSeat::class, 'targetAttribute' => ['seat_id' => 'id']],
         ];
     }
 

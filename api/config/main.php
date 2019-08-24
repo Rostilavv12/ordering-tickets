@@ -45,7 +45,7 @@ return [
                     'controller' => 'ticket',
                     'prefix' => '/api',
                     'extraPatterns' => [
-                        'GET list' => 'list',
+                        'GET list/<movieId:\d+>' => 'list',
                         'POST reserve' => 'reserve',
                         'POST buy' => 'buy',
                     ],
