@@ -94,7 +94,7 @@ class Ticket extends BaseOrder
         $tickets = self::createByParams(
             $movieId,
             $status,
-            Yii::$app->request->getBodyParams()
+            (Yii::$app->request->getBodyParams())['seat_ids']
         );
 
         foreach ($tickets as $ticket) {
@@ -141,8 +141,8 @@ class Ticket extends BaseOrder
 
         foreach ($seatIds as $seatId) {
             $tickets[] = new self([
-                'movie_id' => $movieId,
-                'seat_id' => $seatId,
+                'movie_id' => intval($movieId),
+                'seat_id' => intval($seatId),
                 'status' => $status,
             ]);
         }
